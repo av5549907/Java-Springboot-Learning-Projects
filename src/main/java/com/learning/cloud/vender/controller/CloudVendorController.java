@@ -26,4 +26,8 @@ public class CloudVendorController {
     public List<CloudVendor> getAllVendors(){
         return cloudVendorService.getAllVendors();
     }
+    @DeleteMapping("{vendorId}")
+    public String deleteVendor(@PathVariable int vendorId) {
+        return cloudVendorService.deleteVendor(vendorId);
+    }
 }

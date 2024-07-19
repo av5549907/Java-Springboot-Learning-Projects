@@ -1,6 +1,7 @@
 package com.learning.cloud.vender.ServiceImpl;
 
 import com.learning.cloud.vender.Repository.CloudVendorRepo;
+import com.learning.cloud.vender.ResponseHandler.ElementNotFoundException;
 import com.learning.cloud.vender.Service.CloudVendorService;
 import com.learning.cloud.vender.entity.CloudVendor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,12 @@ public class CloudServiceImp implements CloudVendorService {
     @Override
     public List<CloudVendor> getAllVendors() {
         return cloudVendorRepo.findAll();
+    }
+
+    @Override
+    public String deleteVendor(int vendorId) {
+        CloudVendor cloudVendor=cloudVendorRepo.findById(vendorId).orElseThrow();
+        cloudVendorRepo.delete(cloudVendor);
+        return "vendor with id "+vendorId+" deleted Successfully";
     }
 }
